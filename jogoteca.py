@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+
 
 class Game:
     def __init__(self, name, type, platform):
@@ -22,15 +23,15 @@ def create():
 
     games_list.append(game)
 
-    return render_template("list.html", title_var="Games", games=games_list)
+    return redirect("/")
 
 @app.route("/new")
 def new_game():
-    return render_template("new.html", titulo="New Game")
+    return render_template("new.html", title_var="New Game")
 @app.route("/")
-def hello():
+def index():
 
 
-    return render_template("list.html", title_var="test", games=games_list)
+    return render_template("list.html", title_var="Games", games=games_list)
 
-app.run()
+app.run(debug=True)
